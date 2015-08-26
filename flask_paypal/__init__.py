@@ -8,12 +8,18 @@
 # http://www.opensource.org/licenses/MIT-license
 # Copyright (c) 2015, Bernardo Heynemann <heynemann@gmail.com>
 
+import logging
 from datetime import datetime, timedelta
 
-from flask import Blueprint, current_app, g
-from paypalrestsdk import configure, BillingPlan, BillingAgreement
-
 from flask_paypal.version import __version__  # NOQA
+
+try:
+    from flask import Blueprint, current_app, g
+    from paypalrestsdk import configure, BillingPlan, BillingAgreement
+except ImportError:
+    logging.warn('Could not import dependencies. Probably setup.py installing...')
+    def Blueprint(*args, **kw):
+        pass
 
 
 mod = Blueprint('flask_paypal', __name__)
