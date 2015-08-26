@@ -42,7 +42,7 @@ def init_app(app):
     }
     app.jinja_env.filters['plan_payment_url'] = plan_payment_url
 
-    ensure_plans_activated(app)
+    #ensure_plans_activated(app)
 
 
 def ensure_plans_activated(app):
